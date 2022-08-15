@@ -45,7 +45,7 @@ $ code .
 # Other usefull commands
 ## Install the Ionic CLI with npm:
 ``` 
-npm install -g @ionic/cli native-run cordova-res 
+$ npm install -g @ionic/cli native-run cordova-res 
 ```
 
 ## Building an Ionic Application
@@ -68,13 +68,15 @@ $ npm install @capacitor/camera @capacitor/preferences @capacitor/filesystem
 ### 4. Add some PWA Element Library
 Some Capacitor plugins, including the Camera API, provide the web-based functionality and UI via the Ionic PWA Elements library.
 
-``` $ npm install @ionic/pwa-elements 
+``` 
+$ npm install @ionic/pwa-elements 
 ```
 
 Next, import @ionic/pwa-elements by editing src/main.ts.
-``` import { defineCustomElements } from '@ionic/pwa-elements/loader';
+``` 
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
-    defineCustomElements(window); 
+defineCustomElements(window); 
 ```
 
 ### 5. Run App Locally in a Web Browse 
