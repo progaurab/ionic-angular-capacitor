@@ -44,21 +44,26 @@ $ code .
 ```
 # Other usefull commands
 ## Install the Ionic CLI with npm:
-``` npm install -g @ionic/cli native-run cordova-res ```
+``` 
+npm install -g @ionic/cli native-run cordova-res 
+```
 
 ## Building an Ionic Application
 
 ### 1. create an Application
-``` $ ionic start ionic-angular-capacitor blank --type=angular --capacitor 
+``` 
+$ ionic start ionic-angular-capacitor blank --type=angular --capacitor 
 ```
 
  ### 2. Change into the app folder 
- ``` $ cd ionic-angular-capacitor 
+ ``` 
+ $ cd ionic-angular-capacitor 
  ```
 
  ### 3. Install Capacitor Plugins
- ``` $ npm install @capacitor/camera @capacitor/preferences @capacitor/filesystem 
- ``` 
+``` 
+$ npm install @capacitor/camera @capacitor/preferences @capacitor/filesystem 
+``` 
 
 ### 4. Add some PWA Element Library
 Some Capacitor plugins, including the Camera API, provide the web-based functionality and UI via the Ionic PWA Elements library.
@@ -73,12 +78,14 @@ Next, import @ionic/pwa-elements by editing src/main.ts.
 ```
 
 ### 5. Run App Locally in a Web Browse 
-``` $ ionic serve 
+``` 
+$ ionic serve 
 ```
 
 ## iOS App Development
 ### 6. Xcode Setup
-``` $ xcode-select --install 
+``` 
+$ xcode-select --install 
 ```
 
 ### 7. Configuring Command Line Tools for Android
@@ -90,8 +97,9 @@ ANDROID_SDK_ROOT, avdmanager, sdkmanager, adb, logcat, emulator
 * [How to set JAVA_HOME, GRADLE_HOME & ANDROID_SDK_ROOT path in Windows 11](https://androidabcd.info/how-to-set-java_home-in-windows/)
 
 ### 8. Generate the native project 
-``` $ ionic capacitor add ios
-    $ ionic capacitor add android 
+``` 
+$ ionic capacitor add ios
+$ ionic capacitor add android 
 ```
 
 ### 9. Set the Package ID.
@@ -100,17 +108,20 @@ For Capacitor, open the capacitor.config.json file and modify the appId property
 For Cordova, open the config.xml file and modify the id attribute of the root element, <widget>
 
 ### 10. Open the project in Xcode
-``` $ ionic capacitor open ios 
+``` 
+$ ionic capacitor open ios 
 ```
 
 ### 11. Develop the Ionic app and sync it to the native project.
-``` $ ionic capacitor copy ios 
-    $ ionic capacitor copy android 
+``` 
+$ ionic capacitor copy ios 
+$ ionic capacitor copy android 
 ```
 
 ### 12. Live-reload with Capacitor
-``` $ ionic capacitor run ios -l --external
-    $ ionic capacitor run android -l --host=YOUR_IP_ADDRESS 
+``` 
+$ ionic capacitor run ios -l --external
+$ ionic capacitor run android -l --host=YOUR_IP_ADDRESS 
 ```
 
 # Instructor
