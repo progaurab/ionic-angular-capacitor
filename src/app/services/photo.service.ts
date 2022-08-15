@@ -22,8 +22,7 @@ export class PhotoService {
       key: this.photoStorage,
       value: JSON.stringify(this.photos),
     });
-
-    const filename = photo.filepath.substr(photo.filepath.lastIndexOf('/') + 1);
+    const filename = photo.filepath.substring(photo.filepath.lastIndexOf('/') + 1);
     await Filesystem.deleteFile({
       path: filename,
       directory: Directory.Data,
@@ -41,32 +40,26 @@ export class PhotoService {
     });
 
   public async loadSaved() {
-    // Retrieve cached photo array data
     const photoList = await Preferences.get({ key: this.photoStorage });
     this.photos = JSON.parse(photoList.value) || [];
 
-    // If running on the web...
     if (!this.platform.is('hybrid')) {
-      // Display the photo by reading into base64 format
       for (const photo of this.photos) {
-        // Read each saved photo's data from the Filesystem
         const readFile = await Filesystem.readFile({
           path: photo.filepath,
           directory: Directory.Data,
         });
 
-        // Web platform only: Load the photo as base64 data
         photo.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
       }
     }
   }
 
   public async addNewToGallery() {
-    // Take a photo
     const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri, // file-based data; provides best performance
-      source: CameraSource.Camera, // automatically take a new photo with the camera
-      quality: 100, // highest quality (0 to 100)
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera,
+      quality: 100,
     });
 
     const savedImageFile = await this.savePicture(capturedPhoto);
@@ -117,9 +110,8 @@ export class PhotoService {
 
       return file.data;
     } else {
-      // Fetch the photo, read as a blob, then convert to base64 format
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const response = await fetch(photo.webPath!);
+
+      const response = await fetch(photo.webPath);
       const blob = await response.blob();
 
       return (await this.convertBlobToBase64(blob)) as string;
