@@ -14,12 +14,18 @@ export class PhotoService {
 
   constructor(private platform: Platform) {}
 
+  // Delete picture by removing it from reference data and the filesystem
   public async deletePicture(photo: UserPhoto, position: number) {
+    // Remove this photo from the Photos reference data array
     this.photos.splice(position, 1);
+
+    // Update photos array cache by overwriting the existing photo array
     Preferences.set({
       key: this.photoStorage,
       value: JSON.stringify(this.photos),
     });
+
+    // delete photo file from filesystem
     const filename = photo.filepath.substring(photo.filepath.lastIndexOf('/') + 1);
     await Filesystem.deleteFile({
       path: filename,
@@ -35,19 +41,24 @@ export class PhotoService {
         resolve(reader.result);
       };
       reader.readAsDataURL(blob);
-    });
+  });
 
   public async loadSaved() {
+    // Retrieve cached photo array data
     const photoList = await Preferences.get({ key: this.photoStorage });
     this.photos = JSON.parse(photoList.value) || [];
 
+    // If running on the web...
     if (!this.platform.is('hybrid')) {
+      // Display the photo by reading into base64 format
       for (const photo of this.photos) {
+        // Read each saved photo's data from the Filesystem
         const readFile = await Filesystem.readFile({
           path: photo.filepath,
           directory: Directory.Data,
         });
 
+        // Web platform only: Load the photo as base64 data
         photo.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
       }
     }
@@ -55,9 +66,9 @@ export class PhotoService {
 
   public async addNewToGallery() {
     const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100,
+      resultType: CameraResultType.Uri,  // file-based data; provides best performance
+      source: CameraSource.Camera,       // automatically take a new photo with the camera
+      quality: 100,                      // highest quality (0 to 100)
     });
 
     const savedImageFile = await this.savePicture(capturedPhoto);
@@ -86,11 +97,14 @@ export class PhotoService {
     });
 
     if (this.platform.is('hybrid')) {
+      // Display the new image by rewriting the 'file://' path to HTTP
       return {
         filepath: savedFile.uri,
         webviewPath: Capacitor.convertFileSrc(savedFile.uri),
       };
     } else {
+      // Use webPath to display the new image instead of base64 since it's
+      // already loaded into memory
         return {
           filepath: fileName,
           webviewPath: photo.webPath,
@@ -108,7 +122,7 @@ export class PhotoService {
 
       return file.data;
     } else {
-
+      // Fetch the photo, read as a blob, then convert to base64 format
       const response = await fetch(photo.webPath);
       const blob = await response.blob();
 
