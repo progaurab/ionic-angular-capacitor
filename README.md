@@ -1,7 +1,7 @@
 # Ionic Angular - Build Android iOS PWA with Ionic Framework 6
 This is the repository for the course "Ionic Angular - Build Android iOS PWA with Ionic Framework 6" available on Instill Learning and Udemy. The full course is available from 
-[Udemy]()
-[Instill Learning](https://www.instilllearning.com)
+* [Udemy]()
+* [Instill Learning](https://www.instilllearning.com)
 
 ![Ionic Angular](https://img-c.udemycdn.com/course/750x422/4823198_ec54_2.jpg)
 # Introduction to Ionic
@@ -78,9 +78,9 @@ Next, import @ionic/pwa-elements by editing src/main.ts.
 Check how to set variable path for below:
 ANDROID_SDK_ROOT, avdmanager, sdkmanager, adb, logcat, emulator
 
-How to set JAVA_HOME, GRADLE_HOME & ANDROID_SDK_ROOT path in macOS] (https://androidabcd.info/how-to-set-java_home-gradle_home-android_sdk_root-path-in-macos/)
+* [How to set JAVA_HOME, GRADLE_HOME & ANDROID_SDK_ROOT path in macOS] (https://androidabcd.info/how-to-set-java_home-gradle_home-android_sdk_root-path-in-macos/)
 
-[How to set JAVA_HOME, GRADLE_HOME & ANDROID_SDK_ROOT path in Windows 11] (https://androidabcd.info/how-to-set-java_home-in-windows/)
+* [How to set JAVA_HOME, GRADLE_HOME & ANDROID_SDK_ROOT path in Windows 11] (https://androidabcd.info/how-to-set-java_home-in-windows/)
 
 ### 8. Generate the native project 
 ``` ionic capacitor add ios ```
